@@ -1,0 +1,6 @@
+{
+  "MongoDB": {
+    "Server": "mongodb://localhost:27017",
+    "Database": "net16"
+  }
+}

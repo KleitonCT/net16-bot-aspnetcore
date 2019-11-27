@@ -14,14 +14,16 @@ namespace SimpleBotCore.Logic
 
             var db = cliente.GetDatabase("net16");
 
-            var col = db.GetCollection<MongoDB.Bson.BsonDocument>("col02");
+            var col = db.GetCollection<SimpleMessage>("col02");
 
-            col.InsertOne(new MongoDB.Bson.BsonDocument()
-            {
-                { "id", message.Id },
-                { "user", message.User },
-                { "message", message.Text }
-            });
+            col.InsertOne(message);
+
+            //col.InsertOne(new MongoDB.Bson.BsonDocument()
+            //{
+            //    { "id", message.Id },
+            //    { "user", message.User },
+            //    { "message", message.Text }
+            //});
 
             return $"{message.User} disse '{message.Text}'";
         }
