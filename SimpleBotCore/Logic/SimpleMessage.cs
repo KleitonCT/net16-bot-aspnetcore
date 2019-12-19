@@ -19,9 +19,9 @@ namespace SimpleBotCore.Logic
 
         public SimpleMessage(string id, string username, string text)
         {
-            this.Id = id;
-            this.User = username;
-            this.Text = text;
+            Id = id;
+            User = username;
+            Text = text;
         }
     }
 }

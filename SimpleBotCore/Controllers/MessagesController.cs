@@ -12,11 +12,13 @@ namespace SimpleBotCore.Controllers
     [Route("api/[controller]")]
     public class MessagesController : Controller
     {
-        SimpleBotUser _bot = new SimpleBotUser();
 
-        public MessagesController(SimpleBotUser bot)
+        SimpleBotUser _bot = new SimpleBotUser();
+        private readonly IValuesRepository _values;
+        public MessagesController(SimpleBotUser bot, IValuesRepository values)
         {
-            this._bot = bot;
+            _bot = bot;
+            _values = values;
         }
 
         [HttpGet]
@@ -48,6 +50,7 @@ namespace SimpleBotCore.Controllers
             var message = new SimpleMessage(userFromId, userFromName, text);
 
             string response = _bot.Reply(message);
+            await _values.InsertAsync(message);
 
             await ReplyUserAsync(activity, response);
         }
